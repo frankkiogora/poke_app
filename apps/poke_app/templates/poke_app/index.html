@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <title>User</title>
+    <nav class="class="navbar navbar-light" style="background-color: #63af21;"">
+        <span class="navbar">
+          Pokes App
+        </span>
+    </nav>
+
+
+    
+  </head>
+  <body>
+    <div class="container">
+<!--=================error message display================-->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message%} class="{{ message}}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+<!--=================Registration form===================-->
+
+    <form action="/register" method="POST">
+      {%csrf_token%}
+      
+        <legend>Join us:</legend>
+      
+        <div class="form-group">
+            <label for="last_name">First name</label>
+            <input class="form-control" type="text" name="first_name">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">last name</label>
+            <input class="form-control" type="text" name="last_name">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Alias</label>
+            <input class="form-control" type="text" name="alias">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email">
+        </div>
+
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password">
+        </div>
+
+        <div class="form-group">
+            <label for="password_confirm">Confirm Password</label>
+            <input class="form-control" type="password" name="cpassword">
+        </div>
+
+        <div class='form-group'>
+            <label for='birthday'>Birthday:</label>
+            <input name='birthday' type='date' class='form-control'>
+        </div>
+        <input class="btn btn-primary" type="submit" value='Register'>
+      </form>
+    </div>
+    <!--=================login form===================-->
+    <div class="container">
+    <form action="/login" method="POST">
+      {%csrf_token%}
+      
+        <legend>Login:</legend>
+        Email:<br>
+        <input type="email" name="email" ><br>
+        Password:<br>
+        <input type="password" name="password" ><br><br>
+        <input class="btn btn-primary" type="submit" value='Login'>
+      </form>
+    </div>
+    </body>
+  </html>
+       
+      
+      
+
+        
+
+
+  
+
+      
+
+      

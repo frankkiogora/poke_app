@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title>Poke</title>
+  </head>
+  <body>
+    <div class="container">
+    <a href="/logout">Logout</a>
+      <h1 class="text text-success">Welcome, {{ user.first_name}}</h1>
+        <h3>{{poke_total}} people poked you!</h3>
+      <div>
+        {% if poker %}
+        
+          {% for key in poke_count %}
+            <p>{{key.poker.first_name}} poked you {{key.poker.count}} times.</p>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <table>
+        <tr>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Email address</th>
+            <th>Poke history</th>
+            <th>Action</th>
+        </tr>
+
+        {% for key in others  %}
+        <tr>
+            <td>{{key.first_name}}{{ key.last_name}}</td>
+            <td>{{key.alias}}</td>
+            <td>{{key.email}}</td>
+            <td>{{key.poked.count}} Pokes</td>
+            <td>
+            <form action="/poke_process" method="post">
+              {%csrf_token%}
+              <input class="btn btn-success" type="submit" value="Poke!">
+              <input type="hidden" name="poker_id" value="{{ user.id }}">
+              <input type ="hidden" name= "poked_by_id" value = "{{ key.id }}">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+  </body>
+</div>
+</html>
